@@ -41,6 +41,7 @@
         <allure.cucumber.jvm.version>2.19.0</allure.cucumber.jvm.version>
         <guava.version>31.1-jre</guava.version>
         <json.version>20220924</json.version>
+        <tess4j.version>5.4.0</tess4j.version>
     </properties>
 
     <build>
@@ -162,7 +163,7 @@
         <dependency>
             <groupId>net.sourceforge.tess4j</groupId>
             <artifactId>tess4j</artifactId>
-            <version>5.4.0</version>
+            <version>${tess4j.version}</version>
         </dependency>
     </dependencies>
 
