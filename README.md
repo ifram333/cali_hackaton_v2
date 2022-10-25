@@ -160,7 +160,7 @@ The **apps** section contains the name of the apps that will be tested with the 
 ```json
 "apps": {
   "androidAppName": "testApp.apk",
-  "secondAndroidApp": "testAppV2.ipa",
+  "secondAndroidApp": "testAppV2.apk",
   "iOSAppName": "testApp.ipa"
 }
 ```
