@@ -1,0 +1,69 @@
+{
+  "configs": {
+    "ivan": {
+      "android": "/Users/ivanramirez/Library/Android/sdk",
+      "java": "/Library/Java/JavaVirtualMachines/jdk-11.0.15.1.jdk/Contents/Home",
+      "node": "/usr/local/bin/node",
+      "executable": "/usr/local/bin/appium",
+      "log": "target/appium.log"
+    },
+    "karen": {
+      "android": "/Users/ivanramirez/Library/Android/sdk",
+      "java": "/Library/Java/JavaVirtualMachines/jdk-11.0.15.1.jdk/Contents/Home",
+      "node": "/usr/local/bin/node",
+      "executable": "/usr/local/bin/appium",
+      "log": "target/appium.log"
+    }
+  },
+  "servers": [
+    {
+      "os": "android",
+      "ip": "0.0.0.0",
+      "port": 4725,
+      "device": "android12Real",
+      "app": "apk"
+    },
+    {
+      "os": "android",
+      "ip": "0.0.0.0",
+      "port": 4725,
+      "device": "androidJeison",
+      "app": "apk"
+    },
+    {
+      "os": "android",
+      "ip": "0.0.0.0",
+      "port": 4725,
+      "device": "android12Real",
+      "app": "apk"
+    }
+  ],
+  "apps": {
+    "apk": "Elevate-1.0.apk",
+    "ipa": "Elevate-1.0.ipa"
+  },
+  "capabilities": {
+    "iOS154Sim": {
+      "appium:autoGrantPermissions": true,
+      "platformVersion": "15.4",
+      "deviceName": "iPhone 13"
+    },
+    "iOS154Real": {
+      "appium:autoGrantPermissions": true,
+      "platformVersion": "15.4",
+      "deviceName": "iPhone Xs Max",
+      "udid": "XXXXXXXX-XXXXXXXXXXXXXXXX",
+      "xcodeOrgId": "XXXXXXXXXX",
+      "xcodeSigningId": "iPhone Developer"
+    },
+    "android12Sim": {
+      "appium:autoGrantPermissions": true,
+      "appium:avd": "Android_12",
+      "appium:deviceName": "Android_12"
+    },
+    "android12Real": {
+      "appium:autoGrantPermissions": true,
+      "appium:deviceName": "RF8M40X3BTY"
+    }
+  }
+}
