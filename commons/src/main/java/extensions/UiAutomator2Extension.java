@@ -11,6 +11,9 @@ import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 
+/*
+This class extends the basic functionalities of Appium, allowing to have new actions
+ */
 public class UiAutomator2Extension {
 
 	private static AppiumDriver driver;
@@ -21,6 +24,9 @@ public class UiAutomator2Extension {
 		wait = new WebDriverWait( driver, Duration.ofSeconds( 20 ) );
 	}
 
+	/*
+	Function to swipe an element to any direction. If the element is null, the full screen of the device will be swiped.
+	 */
 	public static void swipe ( DIRECTION direction, RemoteWebElement element ) {
 		Map< String, Object > params = new HashMap<>( );
 
@@ -64,6 +70,9 @@ public class UiAutomator2Extension {
 		swipe( direction, null );
 	}
 
+	/*
+	Function to scroll an element in any direction. In case the element is null, the full screen of the device is scrolled
+	 */
 	public static void scroll ( DIRECTION direction, RemoteWebElement element ) {
 		Map< String, Object > params = new HashMap<>( );
 
@@ -111,6 +120,13 @@ public class UiAutomator2Extension {
 			assert androidDriver != null;
 			return ( RemoteWebElement ) androidDriver.findElement( locator );
 		} );
+	}
+
+	/*
+	Function to wait for an element to disappear
+	 */
+	public static void waitForElementToDisappear ( By locator ) {
+		wait.until( ExpectedConditionsExtension.elementDisappear( locator ) );
 	}
 
 	public enum DIRECTION {

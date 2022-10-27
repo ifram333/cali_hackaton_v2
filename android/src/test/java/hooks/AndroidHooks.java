@@ -26,7 +26,7 @@ public class AndroidHooks {
 		int serverIndex = Integer.parseInt( System.getProperty( "server" ) );
 
 		/*
-		Start iOS Driver.
+		Start Android Driver.
 		 */
 		AndroidAppDriver.startDriver( AppiumServer.getURL( ), serverIndex );
 

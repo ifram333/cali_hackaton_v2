@@ -4,6 +4,11 @@ import io.cucumber.testng.CucumberOptions;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
+/*
+This is the Runner class for failed scenarios, its configuration is similar to the IOS Runner class, the only
+difference is that the scenarios are loaded from a rerun.txt file that contains all the scenarios that have failed
+in previous runs.
+ */
 @CucumberOptions(
 		features = "@target/rerun.txt",
 		glue = { "hooks", "steps" },

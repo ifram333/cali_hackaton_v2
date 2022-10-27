@@ -12,6 +12,9 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+/*
+This class allows reading the appium.json file to be able to access the configuration values, servers, apps and capabilities
+ */
 public class AppiumJsonReader {
 
 	private static final Object lock = new Object( );
@@ -68,26 +71,45 @@ public class AppiumJsonReader {
 		return servers.get( index ).get( "app" ).toString( );
 	}
 
-	public static String getAppName ( String app ) {
-		return apps.get( app ).toString( );
+	public static String getAppName ( int index ) {
+		return apps.get( getApp( index ) ).toString( );
 	}
 
-	public static HashMap< String, String > capabilities ( String device ) {
-		return ( HashMap< String, String > ) capabilities.get( device );
+	public static HashMap< String, String > capabilities ( int index ) {
+		return ( HashMap< String, String > ) capabilities.get( getDevice( index ) );
 	}
 
+	/*
+	Function to load the appium.json file
+	 */
 	private void loadAppiumJson ( ) {
+		/*
+		Read the appium.json file as an InputStreamReader which returns a string, and then convert it to a JSON type object
+		 */
 		String jsonString = new BufferedReader( new InputStreamReader( Objects.requireNonNull( this.getClass( ).getClassLoader( ).getResourceAsStream( "appium.json" ) ), StandardCharsets.UTF_8 ) ).lines( ).collect( Collectors.joining( "\n" ) );
 		JSONObject appiumJson = new JSONObject( jsonString );
 
+		/*
+		Get the config depending on the -Dconfig value
+		 */
 		configs = ( HashMap< String, Object > ) appiumJson.getJSONObject( "configs" ).getJSONObject( System.getProperty( "config" ) ).toMap( );
+
+		/*
+		Get the list of apps
+		 */
 		apps = ( HashMap< String, Object > ) appiumJson.getJSONObject( "apps" ).toMap( );
 
+		/*
+		Get the list of servers
+		 */
 		JSONArray serversArray = appiumJson.getJSONArray( "servers" );
 		for ( int i = 0; i < serversArray.length( ); i++ ) {
 			servers.add( ( HashMap< String, Object > ) serversArray.getJSONObject( i ).toMap( ) );
 		}
 
+		/*
+		Get the list of capabilities
+		 */
 		capabilities = ( HashMap< String, Object > ) appiumJson.getJSONObject( "capabilities" ).toMap( );
 	}
 

@@ -21,7 +21,7 @@ public class AndroidAppDriver {
 		/*
 		Get app name.
 		 */
-		String appName = AppiumJsonReader.getAppName( AppiumJsonReader.getApp( serverIndex ) );
+		String appName = AppiumJsonReader.getAppName( serverIndex );
 
 		/*
 		Load the path to the .apk file
@@ -39,7 +39,7 @@ public class AndroidAppDriver {
 		/*
 		Load the capabilities required to run the execution.
 		 */
-		UiAutomator2Options options = new UiAutomator2Options( AppiumJsonReader.capabilities( AppiumJsonReader.getDevice( serverIndex ) ) );
+		UiAutomator2Options options = new UiAutomator2Options( AppiumJsonReader.capabilities( serverIndex ) );
 		options.setApp( app.getAbsolutePath( ) );
 
 		/*

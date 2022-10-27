@@ -34,6 +34,9 @@ public class BrowsePage extends BasePage {
 	@AndroidFindBy( uiAutomator = scrollDescriptionMatch + "RESULTS.*" + wrapper )
 	private RemoteWebElement resultsLabel;
 
+	@AndroidFindBy( accessibility = "ADD TO QUICK LINKS" )
+	private RemoteWebElement addToQuickLinksLabel;
+
 	public void clickSearchDocumentsInput ( ) {
 		searchDocumentsInput.click( );
 		logger.info( "Click on the 'SEARCH DOCUMENTS' input" );
@@ -49,6 +52,24 @@ public class BrowsePage extends BasePage {
 		RemoteWebElement element = getElementByDescriptionContainsScroll( document );
 		element.click( );
 		logger.info( "Click on the '" + document.toUpperCase( ) + "' image view" );
+	}
+
+	public void clickCategoryView ( String category ) {
+		RemoteWebElement element = getElementByDescriptionContainsScroll( category );
+		element.click( );
+		logger.info( "Click on the '" + category.toUpperCase( ) + "' view" );
+	}
+
+	public void clickSubcategoryView ( String subcategory ) {
+		RemoteWebElement element = getElementByDescriptionContainsScroll( subcategory );
+		element.click( );
+		logger.info( "Click on the '" + subcategory.toUpperCase( ) + "' view" );
+	}
+
+	public void clickSegmentView ( String segment ) {
+		RemoteWebElement element = getElementByDescriptionContainsScroll( segment );
+		element.click( );
+		logger.info( "Click on the '" + segment.toUpperCase( ) + "' view" );
 	}
 
 	public void fillSearchDocumentsInput2 ( String document ) {
@@ -93,6 +114,29 @@ public class BrowsePage extends BasePage {
 	public void validateResultsLabel ( ) {
 		assertTrue( resultsLabel.isDisplayed( ), "The 'RESULTS' label is not displayed" );
 		logger.info( "The '" + resultsLabel.getAttribute( "content-desc" ).toUpperCase( ) + "' label is displayed" );
+	}
+
+	public void validateCategoryLabel ( String category ) {
+		RemoteWebElement element = getElementByDescriptionContainsScroll( category );
+		assertTrue( element.isDisplayed( ), "The '" + category.toUpperCase( ) + "' view is not displayed" );
+		logger.info( "The '" + category.toUpperCase( ) + "' view is displayed" );
+	}
+
+	public void validateSubcategoryLabel ( String subcategory ) {
+		RemoteWebElement element = getElementByDescriptionContainsScroll( subcategory );
+		assertTrue( element.isDisplayed( ), "The '" + subcategory.toUpperCase( ) + "' view is not displayed" );
+		logger.info( "The '" + subcategory.toUpperCase( ) + "' view is displayed" );
+	}
+
+	public void validateAddToQuickLinksLabel ( ) {
+		assertTrue( addToQuickLinksLabel.isDisplayed( ), "The 'RESULTS' label is not displayed" );
+		logger.info( "The 'ADD TO QUICK LINKS' label is displayed" );
+	}
+
+	public void validateSegmentLabel ( String segment ) {
+		RemoteWebElement element = getElementByDescriptionContainsScroll( segment );
+		assertTrue( element.isDisplayed( ), "The '" + segment.toUpperCase( ) + "' view is not displayed" );
+		logger.info( "The '" + segment.toUpperCase( ) + "' view is displayed" );
 	}
 
 }

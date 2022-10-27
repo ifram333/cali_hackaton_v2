@@ -1,12 +1,34 @@
 @Android @MediaCenter
 Feature: Videos
   The purpose of this feature is to cover all the possible scenarios related to the videos in Media Center.
-  Estimated execution time:
 
-  @Test
-  Scenario Outline: 01. Scenario description with "<region>", "<location>", "<profile>", "<category>", and "<videoName>"
+  Scenario Outline: 01. Open the video "<videoName>" under the category "<category>" with a profile "<profile>" in "<region>" - "<location>"
     Given I am a user located in "<region>" - "<location>" with profile "<profile>"
-    When I open the video category "<category>" and open the video "<videoName>"
+    When I open the video "<videoName>" that is located in the category "<category>"
+    Then The video starts playing
+
+    Examples:
+      | region   | location      | profile   | category                | videoName                                        |
+      | Americas | United States | Architect | ACCESSORIES             | Jet Bond Spray Adhesive Training Video           |
+      | Americas | United States | Architect | FIRESTONE METAL ROOFING | Firestone Building Products Metal Sheet and Coil |
+
+  Scenario Outline: 02. Fast forward the video "<videoName>"
+    Given I am a user located in "<region>" - "<location>" with profile "<profile>"
+    And I open the video "<videoName>" that is located in the category "<category>"
+    When The video starts playing
+    And I fast forward the video
+    Then The video keeps playing
+
+    Examples:
+      | region   | location      | profile   | category    | videoName                              |
+      | Americas | United States | Architect | ACCESSORIES | Jet Bond Spray Adhesive Training Video |
+
+  Scenario Outline: 03. Rewind the video "<videoName>"
+    Given I am a user located in "<region>" - "<location>" with profile "<profile>"
+    And I open the video "<videoName>" that is located in the category "<category>"
+    When The video starts playing
+    And I rewind the video
+    Then The video keeps playing
 
     Examples:
       | region   | location      | profile   | category    | videoName                              |

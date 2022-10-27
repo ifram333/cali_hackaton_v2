@@ -42,6 +42,7 @@
         <guava.version>31.1-jre</guava.version>
         <json.version>20220924</json.version>
         <tess4j.version>5.4.0</tess4j.version>
+        <jodaTime.version>2.12.0</jodaTime.version>
     </properties>
 
     <build>
@@ -165,6 +166,14 @@
             <artifactId>tess4j</artifactId>
             <version>${tess4j.version}</version>
         </dependency>
+
+        <!-- Joda Time dependencies -->
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+            <version>${jodaTime.version}</version>
+        </dependency>
+
     </dependencies>
 
 </project>

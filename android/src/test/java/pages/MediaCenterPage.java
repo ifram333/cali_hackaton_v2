@@ -3,17 +3,32 @@ package pages;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 import org.openqa.selenium.By;
 import org.openqa.selenium.remote.RemoteWebElement;
 
+import static java.lang.Thread.sleep;
 import static org.testng.Assert.assertTrue;
+import static org.testng.Assert.fail;
 
 public class MediaCenterPage extends BasePage {
 
 	private final Logger logger = LogManager.getLogger( );
+	private final String loaderIconImageView = "android.widget.ImageView";
 
 	@AndroidFindBy( accessibility = "Media Center" )
 	private RemoteWebElement mediaCenterLabel;
+
+	@AndroidFindBy( xpath = "//android.widget.Button/following-sibling::android.view.View" )
+	private RemoteWebElement videoView;
+
+	@AndroidFindBy( xpath = "//android.widget.ImageView[@content-desc=\"PlayBack Rate\"]/preceding-sibling::android.view.View[3]" )
+	private RemoteWebElement timeInProgressLabel;
+
+	@AndroidFindBy( xpath = "//android.widget.ImageView[@content-desc=\"PlayBack Rate\"]/preceding-sibling::android.view.View[5]" )
+	private RemoteWebElement progressBar;
 
 	public void clickVideoCategoryImageView ( String category ) {
 		RemoteWebElement element = getElementByDescriptionContainsScroll( category );
@@ -60,6 +75,38 @@ public class MediaCenterPage extends BasePage {
 		RemoteWebElement element = getElementByDescriptionContainsScroll( video );
 		assertTrue( element.isDisplayed( ), "The '" + video.toUpperCase( ) + "' label is not displayed" );
 		logger.info( "The '" + video.toUpperCase( ) + "' label is displayed" );
+	}
+
+	public void validateVideoIsPlaying ( ) throws InterruptedException {
+		DateTimeFormatter dateTimeFormatter = DateTimeFormat.forPattern( "mm:ss" );
+
+		waitForElementToDisappear( By.className( loaderIconImageView ) );
+		videoView.click( );
+		DateTime timePlayed = dateTimeFormatter.parseLocalTime( timeInProgressLabel.getAttribute( "content-desc" ) ).toDateTimeToday( );
+
+		sleep( 5000 );
+		videoView.click( );
+		DateTime timePlayed2 = dateTimeFormatter.parseLocalTime( timeInProgressLabel.getAttribute( "content-desc" ) ).toDateTimeToday( );
+
+		if ( timePlayed.isBefore( timePlayed2 ) ) {
+			logger.info( "The video is playing" );
+		} else {
+			fail( "the video is not playing" );
+		}
+	}
+
+	public void swipeProgressBarRight ( ) {
+		waitForElementToDisappear( By.className( loaderIconImageView ) );
+		videoView.click( );
+		swipeRight( progressBar );
+		logger.info( "The video is fast forwarded" );
+	}
+
+	public void swipeProgressBarLeft ( ) {
+		waitForElementToDisappear( By.className( loaderIconImageView ) );
+		videoView.click( );
+		swipeLeft( progressBar );
+		logger.info( "The video is rewound" );
 	}
 
 }

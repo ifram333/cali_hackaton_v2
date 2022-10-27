@@ -1,13 +1,16 @@
 package steps;
 
 import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import pages.*;
+import pages.BrowsePage;
+import pages.MediaCenterPage;
+import pages.MorePage;
+import pages.WelcomePage;
 import sections.TabSection;
 
-import static java.lang.Thread.sleep;
-
+/*
+This class contains all the steps that are made up of different actions
+ */
 public class CompoundSteps extends BaseSteps {
 
 	@Given( "I am a user located in {string} - {string} with profile {string}" )
@@ -50,14 +53,24 @@ public class CompoundSteps extends BaseSteps {
 		instanceOf( BrowsePage.class ).clickDocumentImageView( document );
 	}
 
-	@Then( "The document {string} is displayed with the title {string} on each page" )
-	public void the_document_is_displayed_with_the_title_on_each_page ( String document, String documentTitle ) {
-		instanceOf( DocumentPage.class ).validateDocumentLabel( document );
-		instanceOf( DocumentPage.class ).validateEachPageView( documentTitle );
+	@When( "I open the document {string} that is in the path {string} > {string} > {string}" )
+	public void i_open_the_document_that_is_in_the_path ( String document, String category, String subcategory, String segment ) {
+		instanceOf( BrowsePage.class ).validateBrowserYourDocsAndGuidelinesLabel( );
+		instanceOf( BrowsePage.class ).validateSearchDocumentsInput( );
+		instanceOf( BrowsePage.class ).validateAllCategoriesLabel( );
+		instanceOf( BrowsePage.class ).clickCategoryView( category );
+		instanceOf( BrowsePage.class ).validateCategoryLabel( category );
+		instanceOf( BrowsePage.class ).clickSubcategoryView( subcategory );
+		instanceOf( BrowsePage.class ).validateSubcategoryLabel( subcategory );
+		instanceOf( BrowsePage.class ).validateAddToQuickLinksLabel( );
+		instanceOf( BrowsePage.class ).clickSegmentView( segment );
+		instanceOf( BrowsePage.class ).validateSegmentLabel( segment );
+		instanceOf( BrowsePage.class ).validateAddToQuickLinksLabel( );
+		instanceOf( BrowsePage.class ).clickDocumentImageView( document );
 	}
 
-	@When( "I open the video category {string} and open the video {string}" )
-	public void i_open_the_video_category_and_open_the_video ( String category, String videoName ) throws InterruptedException {
+	@When( "I open the video {string} that is located in the category {string}" )
+	public void i_open_the_video_category_and_open_the_video ( String videoName, String category ) {
 		instanceOf( TabSection.class ).clickMoreTab( );
 		instanceOf( MorePage.class ).validateMoreMenuLabel( );
 		instanceOf( MorePage.class ).validateMediaCenterButton( );
@@ -70,7 +83,6 @@ public class CompoundSteps extends BaseSteps {
 		instanceOf( MediaCenterPage.class ).clickVideoImageView( videoName );
 		instanceOf( MediaCenterPage.class ).validateVideoLabel( videoName );
 		instanceOf( MediaCenterPage.class ).clickPlayVideoView( videoName );
-		sleep( 5000 );
 	}
 
 }
