@@ -4,6 +4,10 @@ import io.cucumber.testng.CucumberOptions;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
+/*
+This is the Runner class, where the cucumber options are set, defining the location of the features files,
+hooks and steps, and where the appium server is initialized and terminated.
+ */
 @CucumberOptions(
 		features = "src/test/resources/features",
 		glue = { "hooks", "steps" },

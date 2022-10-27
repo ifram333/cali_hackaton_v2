@@ -8,7 +8,21 @@
       "log": "target/appium.log"
     },
     "karen": {
-      "android": "/Users/ivanramirez/Library/Android/sdk",
+      "android": "/Users/karenduque/Library/Android/sdk",
+      "java": "/Library/Java/JavaVirtualMachines/jdk-11.0.15.1.jdk/Contents/Home",
+      "node": "/usr/local/bin/node",
+      "executable": "/usr/local/bin/appium",
+      "log": "target/appium.log"
+    },
+    "jeison": {
+      "android": "/Users/jeisondavalos/Library/Android/sdk",
+      "java": "/Library/Java/JavaVirtualMachines/jdk-11.0.15.1.jdk/Contents/Home",
+      "node": "/usr/local/bin/node",
+      "executable": "/usr/local/bin/appium",
+      "log": "target/appium.log"
+    },
+    "ayleen": {
+      "android": "/Users/ayleencastillo/Library/Android/sdk",
       "java": "/Library/Java/JavaVirtualMachines/jdk-11.0.15.1.jdk/Contents/Home",
       "node": "/usr/local/bin/node",
       "executable": "/usr/local/bin/appium",
@@ -20,48 +34,26 @@
       "os": "android",
       "ip": "0.0.0.0",
       "port": 4725,
-      "device": "android12Real",
+      "device": "androidIvan",
       "app": "apk"
     },
     {
       "os": "android",
       "ip": "0.0.0.0",
       "port": 4725,
-      "device": "androidJeison",
-      "app": "apk"
-    },
-    {
-      "os": "android",
-      "ip": "0.0.0.0",
-      "port": 4725,
-      "device": "android12Real",
+      "device": "androidKaren",
       "app": "apk"
     }
   ],
   "apps": {
-    "apk": "Elevate-1.0.apk",
-    "ipa": "Elevate-1.0.ipa"
+    "apk": "Elevate-1.0.apk"
   },
   "capabilities": {
-    "iOS154Sim": {
+    "androidIvan": {
       "appium:autoGrantPermissions": true,
-      "platformVersion": "15.4",
-      "deviceName": "iPhone 13"
+      "appium:deviceName": "RF8M40X3BTY"
     },
-    "iOS154Real": {
-      "appium:autoGrantPermissions": true,
-      "platformVersion": "15.4",
-      "deviceName": "iPhone Xs Max",
-      "udid": "XXXXXXXX-XXXXXXXXXXXXXXXX",
-      "xcodeOrgId": "XXXXXXXXXX",
-      "xcodeSigningId": "iPhone Developer"
-    },
-    "android12Sim": {
-      "appium:autoGrantPermissions": true,
-      "appium:avd": "Android_12",
-      "appium:deviceName": "Android_12"
-    },
-    "android12Real": {
+    "androidKaren": {
       "appium:autoGrantPermissions": true,
       "appium:deviceName": "RF8M40X3BTY"
     }

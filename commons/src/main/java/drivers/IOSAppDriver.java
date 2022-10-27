@@ -21,7 +21,7 @@ public class IOSAppDriver {
 		/*
 		Get app name.
 		 */
-		String appName = AppiumJsonReader.getAppName( AppiumJsonReader.getApp( serverIndex ) );
+		String appName = AppiumJsonReader.getAppName( serverIndex );
 
 		/*
 		Load the path to the .app file.
@@ -39,7 +39,7 @@ public class IOSAppDriver {
 		/*
 		Load the capabilities required to run the execution.
 		 */
-		XCUITestOptions options = new XCUITestOptions( AppiumJsonReader.capabilities( AppiumJsonReader.getDevice( serverIndex ) ) );
+		XCUITestOptions options = new XCUITestOptions( AppiumJsonReader.capabilities( serverIndex ) );
 		options.setApp( app.getAbsolutePath( ) );
 
 		/*

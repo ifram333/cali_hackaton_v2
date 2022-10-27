@@ -9,14 +9,20 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.time.Duration;
 
+/*
+This is a custom class to instantiate a page and initialize its elements using Reflections
+ */
 public class Page {
 
 	public static < T extends BasePage > T instanceOf ( Class< T > clazz ) {
-		return initElements( AndroidAppDriver.androidDriver, clazz ); //return our own custom initElements() method instead of one provided by Selenium
+		return initElements( AndroidAppDriver.androidDriver, clazz );
 	}
 
 	private static < T > T initElements ( WebDriver driver, Class< T > pageClassToProxy ) {
 		T page = instantiatePage( driver, pageClassToProxy );
+		/*
+		Adjusting the maximum wait time to find an element on the test device (30 seconds)
+		 */
 		PageFactory.initElements( new AppiumFieldDecorator( driver, Duration.ofSeconds( 30 ) ), page );
 		return page;
 	}
