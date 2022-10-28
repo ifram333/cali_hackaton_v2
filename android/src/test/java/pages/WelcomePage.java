@@ -93,7 +93,7 @@ public class WelcomePage extends BasePage {
 	}
 
 	public void swipeDownBottomSheet ( ) {
-		UiAutomator2Extension.swipe( UiAutomator2Extension.DIRECTION.DOWN, bottomSheet );
+		UiAutomator2Extension.swipe( UiAutomator2Extension.DIRECTION.DOWN, ( float ) 0.8, bottomSheet );
 		logger.info( "Swipe down the 'FEATURES' bottom sheet" );
 	}
 

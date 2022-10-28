@@ -23,13 +23,14 @@ Feature: Videos
       | region   | location      | profile   | category    | videoName                              |
       | Americas | United States | Architect | ACCESSORIES | Jet Bond Spray Adhesive Training Video |
 
-  Scenario Outline: 03. Rewind the video "<videoName>"
+  Scenario Outline: 03. Rewind the video "<videoName>" to the beginning after it has finished
     Given I am a user located in "<region>" - "<location>" with profile "<profile>"
     And I open the video "<videoName>" that is located in the category "<category>"
-    When The video starts playing
+    And The video starts playing
+    When The video has finished playing
     And I rewind the video
-    Then The video keeps playing
+    Then The video starts playing
 
     Examples:
-      | region   | location      | profile   | category    | videoName                              |
-      | Americas | United States | Architect | ACCESSORIES | Jet Bond Spray Adhesive Training Video |
+      | region   | location      | profile   | category                | videoName                              |
+      | Americas | United States | Architect | FIRESTONE METAL ROOFING | Firestone UC-7 Metal Roofing Animation |

@@ -13,7 +13,6 @@ Feature: PDF Files
       | Americas | United States | Architect | TIS 901B - ISOGARD GL | ISOGARD™      |
       | Americas | United States | Architect | TIS 917A - RESISTA    | RESISTA™      |
 
-  @Test
   Scenario Outline: 02. Search for the document "<document>" with profile "<profile>" in "<region>" - "<location>"
     Given I am a user located in "<region>" - "<location>" with profile "<profile>"
     When I open the document "<document>" that is in the path "<category>" > "<subcategory>" > "<segment>"
