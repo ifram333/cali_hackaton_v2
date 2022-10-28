@@ -21,14 +21,20 @@ public class MediaCenterPage extends BasePage {
 	@AndroidFindBy( accessibility = "Media Center" )
 	private RemoteWebElement mediaCenterLabel;
 
-	@AndroidFindBy( xpath = "//android.widget.Button/following-sibling::android.view.View" )
+	@AndroidFindBy( xpath = "//android.widget.Button/parent::android.view.View" )
 	private RemoteWebElement videoView;
 
 	@AndroidFindBy( xpath = "//android.widget.ImageView[@content-desc=\"PlayBack Rate\"]/preceding-sibling::android.view.View[3]" )
 	private RemoteWebElement timeInProgressLabel;
 
+	@AndroidFindBy( xpath = "//android.widget.ImageView[@content-desc=\"PlayBack Rate\"]/preceding-sibling::android.view.View[4]" )
+	private RemoteWebElement timeLeftLabel;
+
 	@AndroidFindBy( xpath = "//android.widget.ImageView[@content-desc=\"PlayBack Rate\"]/preceding-sibling::android.view.View[5]" )
 	private RemoteWebElement progressBar;
+
+	@AndroidFindBy( xpath = "//android.widget.ImageView[@content-desc=\"PlayBack Rate\"]/preceding-sibling::android.view.View[4]" )
+	private RemoteWebElement afterVideoFinishedPlayingProgressBar;
 
 	public void clickVideoCategoryImageView ( String category ) {
 		RemoteWebElement element = getElementByDescriptionContainsScroll( category );
@@ -95,6 +101,19 @@ public class MediaCenterPage extends BasePage {
 		}
 	}
 
+	public void validateVideoFinishedPlaying ( ) throws InterruptedException {
+		DateTimeFormatter dateTimeFormatter = DateTimeFormat.forPattern( "mm:ss" );
+
+		waitForElementToDisappear( By.className( loaderIconImageView ) );
+		videoView.click( );
+
+		DateTime timeLeft = dateTimeFormatter.parseLocalTime( timeLeftLabel.getAttribute( "content-desc" ).replaceAll( "[^\\d:\\d]", "" ) ).toDateTimeToday( );
+
+		logger.info( "Wait " + timeLeft.toString( dateTimeFormatter ) + " minutes for the video to finish playing" );
+		sleep( ( timeLeft.getSecondOfDay( ) + 1 ) * 1000L );
+		logger.info( "The video has finished playing" );
+	}
+
 	public void swipeProgressBarRight ( ) {
 		waitForElementToDisappear( By.className( loaderIconImageView ) );
 		videoView.click( );
@@ -103,9 +122,8 @@ public class MediaCenterPage extends BasePage {
 	}
 
 	public void swipeProgressBarLeft ( ) {
-		waitForElementToDisappear( By.className( loaderIconImageView ) );
 		videoView.click( );
-		swipeLeft( progressBar );
+		swipeLeft( afterVideoFinishedPlayingProgressBar );
 		logger.info( "The video is rewound" );
 	}
 

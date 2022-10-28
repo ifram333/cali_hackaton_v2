@@ -1,6 +1,7 @@
 package steps;
 
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import pages.DocumentPage;
 import pages.MediaCenterPage;
 
@@ -23,6 +24,11 @@ public class ValidationSteps extends BaseSteps {
 	@Then( "The video keeps playing" )
 	public void the_video_keeps_playing ( ) throws InterruptedException {
 		instanceOf( MediaCenterPage.class ).validateVideoIsPlaying( );
+	}
+
+	@When( "The video has finished playing" )
+	public void the_video_has_finished_playing ( ) throws InterruptedException {
+		instanceOf( MediaCenterPage.class ).validateVideoFinishedPlaying( );
 	}
 
 }

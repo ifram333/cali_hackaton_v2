@@ -27,7 +27,7 @@ public class UiAutomator2Extension {
 	/*
 	Function to swipe an element to any direction. If the element is null, the full screen of the device will be swiped.
 	 */
-	public static void swipe ( DIRECTION direction, RemoteWebElement element ) {
+	public static void swipe ( DIRECTION direction, float percent, RemoteWebElement element ) {
 		Map< String, Object > params = new HashMap<>( );
 
 		if ( element != null ) {
@@ -60,14 +60,14 @@ public class UiAutomator2Extension {
 				break;
 		}
 
-		params.put( "percent", 0.8 );
+		params.put( "percent", percent );
 		params.put( "speed", "1100" );
 
 		driver.executeScript( "mobile: swipeGesture", params );
 	}
 
 	public static void swipe ( DIRECTION direction ) {
-		swipe( direction, null );
+		swipe( direction, ( float ) 0.8, null );
 	}
 
 	/*

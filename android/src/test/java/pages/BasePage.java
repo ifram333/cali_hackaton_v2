@@ -44,21 +44,21 @@ public class BasePage extends Page {
 	Function to do a swipe up in an element
 	 */
 	protected void swipeUp ( RemoteWebElement element ) {
-		UiAutomator2Extension.swipe( UiAutomator2Extension.DIRECTION.UP, element );
+		UiAutomator2Extension.swipe( UiAutomator2Extension.DIRECTION.UP, ( float ) 0.8, element );
 	}
 
 	/*
 	Function to do a swipe right in an element
 	 */
 	protected void swipeRight ( RemoteWebElement element ) {
-		UiAutomator2Extension.swipe( UiAutomator2Extension.DIRECTION.RIGHT, element );
+		UiAutomator2Extension.swipe( UiAutomator2Extension.DIRECTION.RIGHT, ( float ) 0.8, element );
 	}
 
 	/*
 	Function to do a swipe left in an element
 	 */
 	protected void swipeLeft ( RemoteWebElement element ) {
-		UiAutomator2Extension.swipe( UiAutomator2Extension.DIRECTION.LEFT, element );
+		UiAutomator2Extension.swipe( UiAutomator2Extension.DIRECTION.LEFT, ( float ) 1.0, element );
 	}
 
 	/*

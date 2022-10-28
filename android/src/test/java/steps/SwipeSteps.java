@@ -15,7 +15,6 @@ public class SwipeSteps extends BaseSteps {
 
 	@Then( "I rewind the video" )
 	public void i_rewind_the_video ( ) {
-		instanceOf( MediaCenterPage.class ).swipeProgressBarRight( );
 		instanceOf( MediaCenterPage.class ).swipeProgressBarLeft( );
 	}
 
